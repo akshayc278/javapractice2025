@@ -35,66 +35,66 @@ public class LinkedListDefinations {
         }
     }
 
-    private void insertAtPosition(int data,int position){
+    private void insertAtPosition(int data, int position) {
         Node newNode = new Node(data);
         int count = 0;
-        position --;
-        if(position == 0){
+        position--;
+        if (position == 0) {
             insertAtFirst(data);
             return;
         }
         Node headNode = head;
-        while (headNode!=null){
+        while (headNode != null) {
             count++;
-            if(count == position){
+            if (count == position) {
                 Node nextNodes = headNode.next;
                 headNode.next = newNode;
                 newNode.next = nextNodes;
-            }
-            else
+            } else
                 headNode = headNode.next;
         }
     }
 
-    private void deleteFirst(){
+    private void deleteFirst() {
         Node headNode = head;
-        if(headNode != null){
+        if (headNode != null) {
             head = headNode.next;
             headNode.next = null;
         }
     }
-    private void deletAtPosition(int position){
+
+    private void deletAtPosition(int position) {
         Node headNode = head;
-        if(position == 1 ){
+        if (position == 1) {
             deleteFirst();
             return;
         }
         int count = 1;
         //Node prevNode = headNode;
-        while(headNode!=null){
+        while (headNode != null) {
             count++;
             Node prevNode = headNode;
             headNode = headNode.next;
-            if(count == position && headNode!=null){
+            if (count == position && headNode != null) {
                 prevNode.next = headNode.next;
                 headNode.next = null;
             }
         }
     }
 
-    private int findMidOfList(){
+    private int findMidOfList() {
         Node headNode = head;
 
-        Node midNode=new Node(0);
-        midNode.next=headNode;
+        Node midNode = new Node(0);
+        midNode.next = headNode;
 
         int count = 1;
-        while(headNode != null ){
+        while (headNode != null) {
 
-            if(count%2 != 0){
-                midNode=midNode.next;
+            if (count % 2 != 0) {
+                midNode = midNode.next;
             }
-            headNode=headNode.next;
+            headNode = headNode.next;
             count++;
         }
         return midNode.value;
@@ -115,9 +115,9 @@ public class LinkedListDefinations {
         linkedListDefinations.insert(6);
         linkedListDefinations.insert(7);
         linkedListDefinations.insertAtFirst(9);
-        linkedListDefinations.insertAtPosition(2,4);
-        linkedListDefinations.insertAtPosition(4,1);
-        linkedListDefinations.insertAtPosition(10,10);
+        linkedListDefinations.insertAtPosition(2, 4);
+        linkedListDefinations.insertAtPosition(4, 1);
+        linkedListDefinations.insertAtPosition(10, 10);
         linkedListDefinations.deleteFirst();
         linkedListDefinations.deletAtPosition(3);
         System.out.println(linkedListDefinations.findMidOfList());
