@@ -100,6 +100,29 @@ public class LinkedListDefinations {
         return midNode.value;
     }
 
+    private void findLoopAndRemove() {
+        Node headNode = head;
+        Node fastPointer = head;
+        Node slowPointer = head;
+        while (slowPointer != null || fastPointer.next != null) {
+            fastPointer = fastPointer.next.next;
+            slowPointer = slowPointer.next;
+            if (slowPointer == fastPointer) {
+                removeLoop(slowPointer);
+                break;
+            }
+        }
+    }
+
+    private void removeLoop(Node slowPointer) {
+        Node headNode = head;
+        while (headNode != slowPointer) {
+            headNode = headNode.next;
+            slowPointer = slowPointer.next;
+        }
+        slowPointer.next = null;
+    }
+
     public void printList() {
         Node headNode = head;
         while (headNode != null) {
