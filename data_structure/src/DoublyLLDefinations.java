@@ -28,56 +28,76 @@ public class DoublyLLDefinations {
         return length;
     }
 
-    public void displayForwad(){
-        if(head == null){
+    public void displayForwad() {
+        if (head == null) {
             return;
         }
         ListNode startNode = head;
-        while(startNode!=null){
-            System.out.print(startNode.data+" ");
-            startNode=startNode.next;
+        while (startNode != null) {
+            System.out.print(startNode.data + " ");
+            startNode = startNode.next;
         }
 
     }
 
-    public void displayBackward(){
-        if(head == null){
+    public void displayBackward() {
+        if (head == null) {
             return;
         }
         ListNode startNode = tail;
-        while(startNode!=null){
-            System.out.print(startNode.data+" ");
-            startNode=startNode.previous;
+        while (startNode != null) {
+            System.out.print(startNode.data + " ");
+            startNode = startNode.previous;
         }
 
     }
 
-    public void addAtEnd(int data){
+    public void addAtEnd(int data) {
         ListNode node = new ListNode(data);
-        if(head == null){
-            head=node;
-            tail=node;
+        if (head == null) {
+            head = node;
+            tail = node;
             length++;
             return;
         }
-        tail.next=node;
-        node.previous=tail;
-        tail=node;
+        tail.next = node;
+        node.previous = tail;
+        tail = node;
         length++;
     }
 
-    public void addAtFront(int data){
-        ListNode node =new ListNode(data);
-        if(head == null){
-            head=node;
-            tail=node;
+    public void addAtFront(int data) {
+        ListNode node = new ListNode(data);
+        if (head == null) {
+            head = node;
+            tail = node;
             length++;
             return;
         }
-        head.previous =node;
-        node.next=head;
-        head=node;
+        head.previous = node;
+        node.next = head;
+        head = node;
         length++;
+    }
+
+    public void deleteFirstNode() {
+        if (head != null) {
+            ListNode node = head;
+            head = node.next;
+            head.previous = null;
+            length--;
+            node.next = null;
+        }
+    }
+
+    public void deleteLastNode() {
+        if (tail != null) {
+            ListNode node = tail;
+            tail = node.previous;
+            node.previous = null;
+            tail.next = null;
+            length--;
+        }
     }
 
     public static void main(String[] args) {
@@ -89,6 +109,12 @@ public class DoublyLLDefinations {
         System.out.println();
         doublyLLDefinations.displayBackward();
         doublyLLDefinations.addAtFront(3);
+        System.out.println();
+        doublyLLDefinations.displayForwad();
+        doublyLLDefinations.deleteFirstNode();
+        System.out.println();
+        doublyLLDefinations.displayForwad();
+        doublyLLDefinations.deleteLastNode();
         System.out.println();
         doublyLLDefinations.displayForwad();
     }
