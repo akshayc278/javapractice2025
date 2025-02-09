@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class GraphDefinations {
     class Edge {
@@ -40,6 +41,48 @@ public class GraphDefinations {
         }
     }
 
+    public void dfsTraverseGraph(int key, int noOfEdges) {
+        Stack<Edge> st = new Stack<>();
+        System.out.println("dfs started");
+        if (!adj.get(key).isEmpty()) {
+            boolean[] visited = new boolean[noOfEdges];
+            while (!visited[key] || !st.isEmpty()) {
+
+                if (!visited[key]) {
+                    for (int i = 0; i < adj.get(key).size(); i++) {
+                        st.push(adj.get(key).get(i));
+                    }
+                    System.out.println("Node is " + key);
+                    visited[key] = true;
+                }
+
+                if (!st.isEmpty()) {
+                    Edge edge = st.pop();
+                    key = edge.dest;
+                }
+            }
+
+        }
+    }
+
+    public void dfRecusive(int key, boolean[] visited, List<Edge> edgeList) {
+        if (visited[key] == true) {
+            return;
+        }
+
+        visited[key] = true;
+        System.out.print(key + " ");
+        for (int i = 0; i < edgeList.size(); i++) {
+            key = edgeList.get(i).dest;
+            dfRecusive(key, visited, adj.get(key));
+        }
+    }
+
+    public void dfsRec(int key) {
+        boolean[] visited = new boolean[5];
+        dfRecusive(key, visited, adj.get(key));
+    }
+
     public void methodCalls() {
         Edge e1 = new Edge(0, 1, 12);
         Edge e2 = new Edge(1, 3, 13);
@@ -62,6 +105,9 @@ public class GraphDefinations {
         graphDefinations.initiateGraph(numberOfEdges);
         graphDefinations.methodCalls();
         graphDefinations.printGraph();
+        graphDefinations.dfsTraverseGraph(0, 5);
+        System.out.print("Started dfs recursive ");
+        graphDefinations.dfsRec(0);
 
 
     }
