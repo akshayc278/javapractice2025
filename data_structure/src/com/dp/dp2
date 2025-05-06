@@ -1,0 +1,33 @@
+package org.example;
+
+import java.util.ArrayList;
+import java.util.List;
+
+// weight 3 5 2 6
+// max weight of box : 8
+// max weight can be put in box ?
+public class Main {
+
+    private int maxWeight(int []wt,int n,int maxWt){
+        if(maxWt<=0 || n<0){
+            return 0;
+        }
+        if(wt[n]<=maxWt){
+            int currWt= wt[n]+maxWeight(wt,n-1,maxWt-wt[n]);
+            return Math.max(currWt,maxWeight(wt,n-1,maxWt));
+        }
+        else {
+            return maxWeight(wt,n-1,maxWt);
+        }
+    }
+
+    public static void main(String[] args) {
+        int wt[]={3,5,2,6};
+
+        Main main = new Main();
+        int op=main.maxWeight(wt,3,7);
+        System.out.println(op);
+
+    }
+
+}
